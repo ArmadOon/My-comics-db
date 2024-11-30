@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # Application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/comicsdb
+      - SPRING_DATASOURCE_USERNAME=comicsuser
+      - SPRING_DATASOURCE_PASSWORD=comicspass
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  # PostgreSQL database service
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=comicsdb
+      - POSTGRES_USER=comicsuser
+      - POSTGRES_PASSWORD=comicspass
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U comicsuser -d comicsdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:

@@ -1,0 +1,29 @@
+2024-11-30T14:17:04.618+01:00  INFO 30715 --- [Test worker] c.c.ComicsDb.ComicsDbApplicationTests    : Starting ComicsDbApplicationTests using Java 21.0.3 with PID 30715 (started by pluhy in /Users/pluhy/Documents/MyComicsDb/ComicsDb)
+2024-11-30T14:17:04.619+01:00 DEBUG 30715 --- [Test worker] c.c.ComicsDb.ComicsDbApplicationTests    : Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-11-30T14:17:04.619+01:00  INFO 30715 --- [Test worker] c.c.ComicsDb.ComicsDbApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2024-11-30T14:17:05.001+01:00  INFO 30715 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-30T14:17:05.017+01:00  INFO 30715 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 JPA repository interfaces.
+2024-11-30T14:17:05.224+01:00  INFO 30715 --- [Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-30T14:17:05.253+01:00  INFO 30715 --- [Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2024-11-30T14:17:05.288+01:00  INFO 30715 --- [Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-11-30T14:17:05.443+01:00  INFO 30715 --- [Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-30T14:17:05.458+01:00  INFO 30715 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-11-30T14:17:05.556+01:00  INFO 30715 --- [Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:comicsdb user=SA
+2024-11-30T14:17:05.558+01:00  INFO 30715 --- [Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-11-30T14:17:05.572+01:00  WARN 30715 --- [Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-30T14:17:05.582+01:00  INFO 30715 --- [Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-11-30T14:17:05.739+01:00  INFO 30715 --- [Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-30T14:17:05.741+01:00  INFO 30715 --- [Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-30T14:17:05.868+01:00  WARN 30715 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-30T14:17:06.082+01:00  INFO 30715 --- [Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:comicsdb'
+2024-11-30T14:17:06.116+01:00  INFO 30715 --- [Test worker] c.c.ComicsDb.ComicsDbApplicationTests    : Started ComicsDbApplicationTests in 1.621 seconds (process running for 2.23)
+2024-11-30T14:17:06.528+01:00  INFO 30715 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-30T14:17:06.529+01:00  INFO 30715 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-11-30T14:17:06.530+01:00  INFO 30715 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

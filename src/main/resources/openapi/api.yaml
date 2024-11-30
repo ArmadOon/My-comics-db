@@ -1,0 +1,292 @@
+openapi: 3.0.0
+info:
+  title: Comic Book API
+  version: 1.0.0
+  description: API pro správu komiksů a autorů
+servers:
+  - url: /api/v1
+paths:
+  /comics:
+    get:
+      summary: Seznam všech komiksů
+      operationId: getAllComics
+      responses:
+        '200':
+          description: Úspěšné vrácení seznamu komiksů
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComicBookDto'
+
+    post:
+      summary: Vytvoření nového komiksu
+      operationId: createComic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComicBookCreateDto'
+      responses:
+        '201':
+          description: Komiks vytvořen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComicBookDto'
+
+  /comics/{comicId}:
+    get:
+      summary: Zobrazení detailu komiksu
+      operationId: getComicById
+      parameters:
+        - name: comicId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Detail komiksu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComicBookDto'
+        '404':
+          description: Komiks nenalezen
+
+    put:
+      summary: Aktualizace komiksu
+      operationId: updateComic
+      parameters:
+        - name: comicId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ComicBookUpdateDto'
+      responses:
+        '200':
+          description: Komiks úspěšně aktualizován
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComicBookDto'
+        '404':
+          description: Komiks nenalezen
+
+    delete:
+      summary: Smazání konkrétního komiksu
+      operationId: deleteComicById
+      parameters:
+        - name: comicId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Komiks úspěšně smazán
+        '404':
+          description: Komiks nenalezen
+
+  /authors:
+    get:
+      summary: Seznam všech autorů
+      operationId: getAllAuthors
+      responses:
+        '200':
+          description: Úspěšné vrácení seznamu autorů
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AuthorDto'
+
+    post:
+      summary: Vytvoření nového autora
+      operationId: createAuthor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorCreateDto'
+      responses:
+        '201':
+          description: Autor vytvořen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDto'
+
+
+  /authors/{authorId}:
+    get:
+      summary: Zobrazení detailu autora
+      operationId: getAuthorById
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Detail autora
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDto'
+        '404':
+          description: Autor nenalezen
+
+    put:
+      summary: Aktualizace autora
+      operationId: updateAuthor
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorUpdateDto'
+      responses:
+        '200':
+          description: Autor úspěšně aktualizován
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorDto'
+        '404':
+          description: Autor nenalezen
+
+    delete:
+      summary: Smazání konkrétního autora
+      operationId: deleteAuthorById
+      parameters:
+        - name: authorId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Autor úspěšně smazán
+        '404':
+          description: Autor nenalezen
+
+components:
+  schemas:
+    ComicBookDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+        description:
+          type: string
+        publicationYear:
+          type: integer
+        rating:
+          type: string
+          enum: [EXCELLENT, VERY_GOOD, GOOD, AVERAGE, POOR]
+        author:
+          $ref: '#/components/schemas/AuthorDto'
+
+    ComicBookCreateDto:
+      type: object
+      required:
+        - title
+        - authorId
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        publicationYear:
+          type: integer
+        rating:
+          type: string
+          enum: [EXCELLENT, VERY_GOOD, GOOD, AVERAGE, POOR]
+        authorId:
+          type: string
+          format: uuid
+
+    ComicBookUpdateDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        publicationYear:
+          type: integer
+        rating:
+          type: string
+          enum: [EXCELLENT, VERY_GOOD, GOOD, AVERAGE, POOR]
+        authorId:
+          type: string
+          format: uuid
+
+    AuthorDto:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthYear:
+          type: integer
+        comicBookIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+
+    AuthorCreateDto:
+      type: object
+      required:
+        - firstName
+        - lastName
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthYear:
+          type: integer
+
+    AuthorUpdateDto:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        birthYear:
+          type: integer
